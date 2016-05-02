@@ -1,0 +1,8 @@
+
+style "user-font" {
+	font_name = "Ubuntu 4"
+}
+
+widget_class "*" style "user-font"
+
+gtk-font-name="Ubuntu 4"

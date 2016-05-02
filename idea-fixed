@@ -1,0 +1,19 @@
+#!/bin/sh
+
+# setting the fixed jdk to the default only in this terminal
+export JAVA_HOME=/opt/jdk1.8.0-amd64-font-fixed
+export XMODIFIERS=""
+
+export _JAVA_OPTIONS="-Dswing.aatext=true \
+	-Dawt.useSystemAAFontSettings=lcd \
+	-Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
+
+# running idea
+SCRIPT_FILE=$(readlink -f $0)
+SCRIPT_PATH=`pwd`/.bashrc && SCRIPT_PATH=`readlink $SCRIPT_PATH` && SCRIPT_PATH=`dirname $SCRIPT_PATH`
+if [ "$SCRIPT_PATH" = "" ]; then
+	SCRIPT_PATH=$(dirname $SCRIPT_FILE)
+fi
+
+export GTK2_RC_FILES=$SCRIPT_PATH/.gtk.fix-idea
+$SCRIPT_PATH/bin/idea.sh
